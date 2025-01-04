@@ -1,5 +1,69 @@
-# Joplin Plugin
+# Github Alerts
 
-This is your new Joplin plugin. It is suggested that you use this README file to document your plugin.
+**[GitHub Alerts](https://github.blog/changelog/2023-12-14-new-markdown-extension-alerts-provide-distinctive-styling-for-significant-content/)** are a Markdown extension based on the blockquote syntax that you can use to emphasize critical information.
+They are displayed with distinctive **GitHub** colors and icons to indicate the significance of the content.
 
-For information on how to build or publish the plugin, please see [GENERATOR_DOC.md](./GENERATOR_DOC.md)
+> [!NOTE]
+> Highlights information that users should take into account, even when skimming.
+
+> [!TIP]
+> Optional information to help a user be more successful.
+
+> [!IMPORTANT]
+> Crucial information necessary for users to succeed.
+
+> [!WARNING]
+> Critical content demanding immediate user attention due to potential risks.
+
+> [!CAUTION]
+> Negative potential consequences of an action.
+
+```
+> [!NOTE]
+> Highlights information that users should take into account, even when skimming.
+
+> [!TIP]
+> Optional information to help a user be more successful.
+
+> [!IMPORTANT]
+> Crucial information necessary for users to succeed.
+
+> [!WARNING]
+> Critical content demanding immediate user attention due to potential risks.
+
+> [!CAUTION]
+> Negative potential consequences of an action.
+```
+
+## Functionality
+
+This plugin transforms the following markdown:
+
+```markdown
+> [!NOTE]
+> Highlights information that users should take into account, even when skimming.
+```
+
+to the following HTML:
+
+```html
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title" dir="auto"><!-- svg icon-->Note</p><p>
+  Highlights information that users should take into account, even when skimming.</p>
+</div>
+```
+
+Which is compatible with GitHub's output.
+
+### Customization
+
+Alternative titles are supported by appending them to the marker like this:
+
+```markdown
+> [!note] Nota bene
+> The custom title will replace the regular title.
+```
+
+## License
+
+MIT © Alan Płócieniak
