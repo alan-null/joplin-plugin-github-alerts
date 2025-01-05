@@ -13,8 +13,8 @@
 		"mobile"
 	],
 	"keywords": [
-		"editor",
 		"viewer",
+		"editor",
 		"visual",
 		"github",
 		"alert",
@@ -33,7 +33,18 @@
 		"appearance",
 		"editor"
 	],
-	"screenshots": [],
+	"screenshots": [
+		{
+			"src": "images/screenshots/joplin-desktop.png",
+			"label": "Joplin desktop"
+		},
+		{
+			"src": "images/screenshots/joplin-mobile.png",
+			"label": "Joplin mobile"
+		}
+	],
 	"icons": {},
-	"promo_tile": {}
+	"promo_tile": {
+		"src": "images/promo_tile.png"
+	}
 }
