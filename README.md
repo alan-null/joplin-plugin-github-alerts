@@ -1,5 +1,8 @@
 # Github Alerts
 
+[![Latest Release](https://img.shields.io/github/v/release/alan-null/joplin-plugin-github-alerts?logo=joplin&label=plugin&color=1071D3)](https://github.com/alan-null/joplin-plugin-github-alerts/releases/latest)
+[![MIT License](https://img.shields.io/github/license/alan-null/joplin-plugin-github-alerts)](https://opensource.org/licenses/MIT)
+
 **[GitHub Alerts](https://github.blog/changelog/2023-12-14-new-markdown-extension-alerts-provide-distinctive-styling-for-significant-content/)** are a Markdown extension based on the blockquote syntax that you can use to emphasize critical information.
 They are displayed with distinctive **GitHub** colors and icons to indicate the significance of the content.
 
@@ -55,4 +58,4 @@ Which is compatible with GitHub's output.
 
 
 ## License
-MIT © Alan Płócieniak
+[MIT License](LICENSE.md) © Alan Płócieniak
