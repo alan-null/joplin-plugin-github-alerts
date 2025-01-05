@@ -1,7 +1,7 @@
 {
 	"manifest_version": 1,
 	"id": "com.github.alan-null.joplin-plugin-github-alerts",
-	"app_min_version": "3.1.24",
+	"app_min_version": "3.1.8",
 	"version": "1.0.2",
 	"name": "Github Alerts",
 	"description": "Github Alerts are a Markdown extension based on the blockquote syntax that you can use to emphasize critical information. They are displayed with distinctive GitHub colors and icons to indicate the significance of the content.",
@@ -9,7 +9,8 @@
 	"homepage_url": "https://github.com/alan-null/joplin-plugin-github-alerts#readme",
 	"repository_url": "https://github.com/alan-null/joplin-plugin-github-alerts",
 	"platforms": [
-		"desktop"
+		"desktop",
+		"mobile"
 	],
 	"keywords": [
 		"editor",
