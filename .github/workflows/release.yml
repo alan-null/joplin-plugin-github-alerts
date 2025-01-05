@@ -1,0 +1,81 @@
+name: Build Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_to_npm:
+        description: "Publish to npm (true/false)"
+        required: false
+        default: "true"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      id-token: write  # Required for provenance
+      packages: write  # Required to publish to npm
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Get date
+        id: date
+        run: echo "time=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+
+      - name: Set release details
+        id: release
+        run: |
+          version=$(jq -r '.version' src/manifest.json)
+          id=$(jq -r '.id' src/manifest.json)
+          ref_name=${GITHUB_REF_NAME:-unknown}
+          time=${{ env.time }}
+
+          if [[ "${{ github.event.inputs.publish_to_npm }}" == "true" ]]; then
+            release_name="v$version"
+            release_tag="v$version"
+            release_type=""
+          else
+            release_name="$version-$ref_name+$time"
+            release_tag="$version-$ref_name+$time"
+            release_type="--prerelease"
+          fi
+
+          echo "id=$id" >> $GITHUB_ENV
+          echo "version=$version" >> $GITHUB_ENV
+          echo "release_name=$release_name" >> $GITHUB_ENV
+          echo "release_tag=$release_tag" >> $GITHUB_ENV
+          echo "release_type=$release_type" >> $GITHUB_ENV
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build release
+        run: npm run dist
+
+      - name: Create or update GitHub release
+        run: |
+          echo "Creating release with name: ${{ env.release_name }} and tag: ${{ env.release_tag }}"
+          gh release create "${{ env.release_tag }}" publish/${{ env.id }}.jpl \
+            --title "${{ env.release_name }}" \
+            --notes "Release artifacts for version ${{ env.release_name }}" \
+            ${{ env.release_type }} \
+            --target "${{ github.sha }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish package to npm (optional)
+        if: ${{ github.event.inputs.publish_to_npm == 'true' }}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          npm publish --provenance
+          rm -f ~/.npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
