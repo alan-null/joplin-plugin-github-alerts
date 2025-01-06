@@ -5,19 +5,19 @@
     border-left: .25em solid #888;
 }
 
-.markdown-alert>:first-child {
-    margin-top: 0
+.markdown-alert > :first-child {
+    margin-top: 0;
 }
 
-.markdown-alert>:last-child {
-    margin-bottom: 0
+.markdown-alert > :last-child {
+    margin-bottom: 0;
 }
 
 .markdown-alert .markdown-alert-title {
     display: flex;
     font-weight: 500;
     align-items: center;
-    line-height: 1
+    line-height: 1;
 }
 
 .markdown-alert .markdown-alert-title .octicon {
@@ -66,14 +66,4 @@
 
 .markdown-alert.markdown-alert-caution .markdown-alert-title {
     color: var(--color-caution);
-}
-
-/* colors-light */
-:root {
-    --color-note: #0969da;
-    --color-tip: #1a7f37;
-    --color-warning: #9a6700;
-    --color-severe: #bc4c00;
-    --color-caution: #d1242f;
-    --color-important: #8250df;
 }

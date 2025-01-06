@@ -8,8 +8,12 @@ module.exports = {
             },
 
             assets: function () {
+                const appearance = getComputedStyle(window.top.document.documentElement).getPropertyValue('--joplin-appearance').trim();
+                const themeAsset = appearance === 'dark' ? 'gh-alerts-theme-dark.css' : 'gh-alerts-theme-light.css';
+
                 return [
-                    { name: 'gh-alerts.css' }
+                    { name: 'gh-alerts.css' },
+                    { name: themeAsset }
                 ];
             },
         }
